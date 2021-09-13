@@ -2,7 +2,7 @@
 from tkinter import *
 from tkinter import messagebox
 import sqlite3
-from tkinter import tkk
+from tkinter import ttk
 
 
 
@@ -85,8 +85,12 @@ delete_button.grid(row=1,column=0,padx=5)
 update_button=Button(function_frame,text="Update",padx=40)
 update_button.grid(row=2,column=0,padx=5,pady=20)
 
+refresh_button=Button(function_frame,text="Refresh",padx=40)
+refresh_button.grid(row=3,column=0,padx=5)
+
+
 clear_button=Button(function_frame,text="Clear all",padx=40)
-clear_button.grid(row=3,column=0,padx=5,pady=210)
+clear_button.grid(row=4,column=0,padx=5,pady=170)
 
 
 def display_frame():
@@ -97,22 +101,24 @@ def display_frame():
             #----------------    Creating a Frame  --------------------------
 
     secondary_frame = Frame(root,bg="#ffffff")
-    main_frame.place(x=0, y=90)
+    secondary_frame.place(x=0, y=20)
 
-    my_canvas = Canvas(main_frame, width=1500, height=740,bg="#ffffff")
+    my_canvas = Canvas(secondary_frame, width=550, height=390,bg="#ffffff")
     my_canvas.pack(side=LEFT, fill=BOTH)
 
-    my_scrollbar = ttk.Scrollbar(main_frame, orient=VERTICAL, command=my_canvas.yview)
-    my_scrollbar.pack(side=RIGHT, padx=5, fill=Y)
+    my_scrollbar = ttk.Scrollbar(secondary_frame, orient=VERTICAL, command=my_canvas.yview)
+    my_scrollbar.pack(side=RIGHT, padx=2, fill=Y)
 
     my_canvas.configure(yscrollcommand=my_scrollbar.set)
     my_canvas.bind('<Configure>', lambda e: my_canvas.configure(scrollregion=my_canvas.bbox("all")))        
 
-    second_frame = Frame(my_canvas, width=1500, height=740,bg="#ffffff")
+    second_frame = Frame(my_canvas, width=550, height=400,bg="#ffffff")
 
 
-    my_canvas.create_window((0,880), window=second_frame)
+    my_canvas.create_window((0,400), window=second_frame)
 
+
+display_frame()
 
 
 conn.commit()
