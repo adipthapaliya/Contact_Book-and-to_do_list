@@ -166,9 +166,11 @@ def update_contact():
             WHERE oid= :oid""",
         
         {
-            "user": username_editor.get(),
-            "number": firstname_editor.get(),
-            "adress":adress_editor.get()
+            "user": edit_name_entry.get(),
+            "number": edit_phonenumber_entry.get(),
+            "adress":edit_adress_entry.get(),
+
+            "oid":record_id
 
 
 
@@ -222,7 +224,10 @@ def edit_window():
             edit_phonenumber_entry.insert(0,record[1])
             edit_adress_entry.insert(0,record[2])
         
-            
+
+        conn.commit()
+        conn.close()
+   
 
 
 
@@ -232,30 +237,31 @@ def edit_window():
     global edit_name_entry
     global edit_phonenumber_entry
     global edit_adress_entry
+    global edit_box
 
     edit_name_label=Label(editwin,text="Name")
-    edit_name_label.grid(row=0,column=0,pady=10)
+    edit_name_label.grid(row=2,column=0,pady=10)
 
     edit_name_entry=Entry(editwin,width=30)
-    edit_name_entry.grid(row=0,column=1,pady=10)
+    edit_name_entry.grid(row=2,column=1,pady=10)
 
     edit_phonenumber_label=Label(editwin,text="Phone number")
-    edit_phonenumber_label.grid(row=1,column=0)
+    edit_phonenumber_label.grid(row=3,column=0)
 
     edit_phonenumber_entry=Entry(editwin,width=30)
-    edit_phonenumber_entry.grid(row=1,column=1)
+    edit_phonenumber_entry.grid(row=3,column=1)
 
     edit_adress_label=Label(editwin,text="Adress")
-    edit_adress_label.grid(row=2,column=0,pady=10)
+    edit_adress_label.grid(row=4,column=0,pady=10)
 
     edit_adress_entry=Entry(editwin,width=30)
-    edit_adress_entry.grid(row=2,column=1,pady=10)
+    edit_adress_entry.grid(row=4,column=1,pady=10)
 
     submit_button=Button(editwin,text="Submit",command=update_contact)
-    submit_button.grid(row=3,column=0,pady=30)
+    submit_button.grid(row=5,column=0,pady=30)
 
     cancle_button=Button(editwin,text="Cancle",command=cancle)
-    cancle_button.grid(row=3,column=1,pady=30)
+    cancle_button.grid(row=5,column=1,pady=30)
 
     #====submit
 
