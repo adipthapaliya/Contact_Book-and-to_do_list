@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 import sqlite3
 from tkinter import ttk
+import subprocess
 
 
 
@@ -109,6 +110,7 @@ def refresh_window():
 
 def close_window():
     root.destroy()
+    subprocess.call(["python","main_page.py"])
 
 
 
